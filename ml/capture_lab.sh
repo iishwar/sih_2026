@@ -95,4 +95,4 @@ echo "PCAP: ${PCAP_PATH}"
 echo "Manifest: ${MANIFEST_PATH}"
 echo
 echo "Next: label the relevant observation windows using your lab notes."
-echo "Keep data/raw and data/manifests out of Git."
+echo "Keep data/raw and data/manifests out of Git."     
