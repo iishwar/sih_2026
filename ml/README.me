@@ -1,0 +1,28 @@
+# NetraVerse ML
+
+This folder contains the training and evaluation side of the passive
+threat-detection system.
+
+It does not contain packet datasets. Capture data and generated feature
+files should stay outside Git.
+
+## Architecture
+
+1. Capture authorized lab traffic into PCAP files.
+2. Record capture and scenario IDs so test data can be separated by scenario.
+3. Use the service's offline feature extractor to create a labelled feature CSV.
+4. Train six separate binary XGBoost models.
+5. Select each decision threshold using validation data.
+6. Evaluate once on held-out test scenarios.
+7. Export XGBoost JSON models and thresholds for C++ inference.
+
+The Python feature names are defined in `feature_schema.py`. The C++ feature
+extractor must compute these same features using the same definitions and
+time windows.
+
+## Capture
+
+Install tcpdump, then run:
+
+```bash
+sudo ./capture_lab.sh <interface> <capture_id> <scenario_id> <seconds>
